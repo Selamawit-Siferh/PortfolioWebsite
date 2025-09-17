@@ -49,32 +49,20 @@ To run the app on a different port (e.g., 4000), modify the `scripts` section in
 "scripts": {
   "start": "set PORT=4000 && react-scripts start"
 }
-## 3. Deploying to GitHub Pages
+## 3. 2. Import Project to Vercel
 
-### 3.1 Install `gh-pages`
+Go to Vercel
+.
 
-First, install the `gh-pages` package as a development dependency:
+Sign up (or log in) with your GitHub account.
 
-npm install gh-pages --save-dev
-### 3.2 Modify `package.json`
+Click “New Project” and import your repository.
 
-Add deployment scripts to your `package.json`:
-
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-}
-### 3.3 Deploy Your Application
-
-Run the following command to deploy your application:
-
-
-npm run deploy
+Vercel will detect React automatically.
 
 
 ## 4. Accessing Your Website
 
 After deployment, your portfolio will be available at:  in vercel deployed like this
 
-
-https://portfolio-puxyyw3jx-selamawits-projects-9eef308c.vercel.app/
+https://portfolio-website-lqyq5cory-selamawits-projects-9eef308c.vercel.app/
