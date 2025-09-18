@@ -65,4 +65,4 @@ Vercel will detect React automatically.
 
 After deployment, your portfolio will be available at:  in vercel deployed like this
 
-https://portfolio-website-lqyq5cory-selamawits-projects-9eef308c.vercel.app/
+https://portfolio-website-ten-mocha.vercel.app/
