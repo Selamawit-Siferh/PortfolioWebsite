@@ -12,10 +12,6 @@ const personDetails = [
     value: "Selamawit Siferh",
   },
   {
-    label: "Age",
-    value: "24",
-  },
-  {
     label: "Address",
     value: "Addis Ababa",
   },

@@ -39,7 +39,7 @@ export const data = {
         },
        
         {
-            title:" Junior IS Officer",
+            title:"  IS Tranee",
             subTitle: 'At Commercial Bank of Ethiopia',
             description: 'Develop and customise different applications and systems',
             date:'November 2024 to Present',

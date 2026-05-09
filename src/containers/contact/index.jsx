@@ -3,9 +3,9 @@ import PageHeaderContainer from "../../components/pageHeaderContent";
 import { BsInfoCircleFill } from "react-icons/bs";
 import "./style.scss";
 import { Animate } from "react-simple-animate";
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
+import emailjs from "@emailjs/browser";
 // import {HiX} from  "react-tsparticles"
-
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -29,41 +29,46 @@ const Contact = () => {
       alert("Please enter your messages.");
       return;
     }
-   
 
     if (!validateEmail(email)) {
-      setEmailError("Please enter a valid Gmail address.");
+      setEmailError("Please enter a valid email address..");
       alert("Please enter a valid Gmail address.");
       return;
     }
 
     const templateParams = {
-      to_name: 'Selamawit',
+      to_name: "Selamawit",
       from_name: name,
       from_email: email,
       message: description,
     };
 
-    const serviceId = 'service_gm3uafl';
-    const templateId = 'template_zmiihpw';
-    const userId = 'eyfiAWRIwU6iauKs7';
-
-    emailjs.send(serviceId, templateId, templateParams, userId)
+    const serviceId = "service_gm3uafl";
+    const templateId = "template_zmiihpw";
+    const userId = "eyfiAWRIwU6iauKs7";
+    emailjs
+      .send(serviceId, templateId, templateParams, userId)
       .then((response) => {
-        const successMessage = `Email sent successfully! Status: ${response.status}, Response: ${response.text}`;
-        alert(successMessage);
+
         setName("");
         setEmail("");
         setDescription("");
         setEmailError("");
       })
       .catch((error) => {
-        console.error('Error sending email:', error);
+        console.log("FAILED...", error);
+
+        if (error.status === 412) {
+          alert("Gmail account disconnected in EmailJS. Please reconnect it.");
+        } else {
+          alert("Failed to send email.");
+        }
       });
   };
 
   const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@gmail\.com$/;
+    // const emailRegex = /^[^\s@]+@gmail\.com$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
@@ -105,7 +110,7 @@ const Contact = () => {
                   <input
                     type="text"
                     className="inputName"
-                    name="name"
+                    name="from_name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -118,7 +123,7 @@ const Contact = () => {
                   <input
                     type="email"
                     className="inputEmail"
-                    name="email"
+                    name="from_email"
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
@@ -129,20 +134,19 @@ const Contact = () => {
                   <label htmlFor="email" className="emailLable">
                     Email
                   </label>
-                  {emailError && (
-                    <p className="error-message">{emailError}</p>
-                  )}
+                  {emailError && <p className="error-message">{emailError}</p>}
                 </div>
                 <div>
                   <input
                     type="text"
                     className="inputDescription"
-                    name="description"
+                    name="message"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                     rows={4}
                   />
+                  
                   <label htmlFor="description" className="descriptionLabel">
                     Messages
                   </label>
